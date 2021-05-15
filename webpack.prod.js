@@ -4,7 +4,7 @@ const webpackCommon = require('./webpack.common');
 /** @type {import('webpack').Configuration} */
 
 module.exports = merge(webpackCommon, {
-  mode: production,
+  mode: 'production',
   optimization: {
     minimize: true,
   },
