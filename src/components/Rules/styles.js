@@ -17,6 +17,7 @@ export const Picture = styled.picture`
 export const Imagen = styled.img`
   margin-block: 2.5em;
   width: 90%;
+  max-width: 320px;
 `;
 
 export const CloseButton = styled.button`
