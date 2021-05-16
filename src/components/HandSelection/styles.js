@@ -2,16 +2,24 @@ import styled from 'styled-components';
 
 export const Selection = styled.div`
   position: absolute;
-  transform: ${({ id }) => {
+  transform: ${({ id, isExtended }) => {
     //TODO FALTA ORDENARLOS EN EL ORDEN CORRECTO
+    let denominador = 3;
+    let hip = -140;
+    let offset = -45;
+    if (isExtended) {
+      denominador = 5;
+      hip = 140;
+      offset = 0;
+    }
     let value = `translate(${
       id % 2 == 0
-        ? -120 * Math.sin((Math.PI * id) / 5)
-        : 120 * Math.sin((Math.PI * id) / 5)
+        ? -1 * hip * Math.sin((Math.PI * id) / denominador)
+        : hip * Math.sin((Math.PI * id) / denominador)
     }px, ${
       id % 2 == 0
-        ? -120 * Math.cos((Math.PI * id) / 5)
-        : 120 * Math.cos((Math.PI * id) / 5)
+        ? -1 * hip * Math.cos((Math.PI * id) / denominador) + offset
+        : hip * Math.cos((Math.PI * id) / denominador) + offset
     }px)`;
     return value;
   }};

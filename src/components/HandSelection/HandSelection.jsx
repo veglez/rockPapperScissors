@@ -1,4 +1,5 @@
 import React from 'react';
+import { useGlobalData } from '../../utils/useGlobalData';
 import { Selection } from './styles';
 
 const HandSelection = ({
@@ -10,6 +11,8 @@ const HandSelection = ({
   id,
   handleClick,
 }) => {
+  const { extendedVersion } = useGlobalData();
+
   return (
     <Selection
       gradColor1={gradColor1}
@@ -17,6 +20,7 @@ const HandSelection = ({
       isActive={isActive}
       id={id}
       onClick={handleClick}
+      isExtended={extendedVersion}
     >
       <picture>
         <img src={src} alt={name} />

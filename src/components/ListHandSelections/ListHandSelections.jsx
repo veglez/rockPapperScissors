@@ -1,6 +1,7 @@
 import React from 'react';
 import HandSelection from '../HandSelection/HandSelection';
 import pentagram from '@images/bg-pentagon.svg';
+import triangle from '@images/bg-triangle.svg';
 import items from './data';
 import {
   HandsContainer,
@@ -13,14 +14,22 @@ import {
   Hands,
 } from './styles';
 import { useGlobalData } from '../../utils/useGlobalData';
-import { defineWinner } from '../../utils/gameUtils';
+import { defineWinner, options } from '../../utils/gameUtils';
 
 const ListHandSelections = () => {
-  const { gameplay, setGameplay } = useGlobalData();
+  const { gameplay, setGameplay, extendedVersion } = useGlobalData();
 
+  const itemsVersion = extendedVersion
+    ? items
+    : items.filter((item) =>
+        [options.paper, options.rock, options.scissors].includes(item.name)
+      );
+
+  console.log('items are itemsVersion: ', itemsVersion);
   const handleClick = (el) => {
     let actualScore = 0;
-    const machine = items[Math.floor(Math.random() * items.length)];
+    const machine =
+      itemsVersion[Math.floor(Math.random() * itemsVersion.length)];
     const whoWins = defineWinner(el.name, machine.name);
     switch (whoWins) {
       case 0:
@@ -78,13 +87,16 @@ const ListHandSelections = () => {
   }
   return (
     <HandsContainer>
-      {items.map((item) =>
+      {itemsVersion.map((item) =>
         React.cloneElement(
           <HandSelection {...item} handleClick={() => handleClick(item)} />,
           { key: item.id }
         )
       )}
-      <Background src={pentagram} alt='pentagrama' />
+      <Background
+        src={extendedVersion ? pentagram : triangle}
+        alt='pentagrama'
+      />
     </HandsContainer>
   );
 };

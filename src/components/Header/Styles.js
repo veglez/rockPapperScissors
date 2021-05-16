@@ -15,5 +15,11 @@ export const Options = styled.div`
   text-transform: uppercase;
   line-height: 0.75em;
   color: white;
-  /* width: 200px; */
+
+  p:nth-child(4),
+  p:nth-child(5) {
+    display: ${({ isExtended }) => {
+      return isExtended ? 'block' : 'none';
+    }};
+  }
 `;

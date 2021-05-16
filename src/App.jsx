@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/Header/Header';
 import ListHandSelections from './components/ListHandSelections/ListHandSelections';
 import Rules from './components/Rules/Rules';
-
+import Switch from './components/Switch/Switch';
 const App = () => {
   return (
     <div
@@ -11,12 +11,13 @@ const App = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        minHeight: '80vh',
+        minHeight: '100vh',
       }}
     >
       <Header />
       <ListHandSelections />
       <Rules />
+      <Switch />
     </div>
   );
 };

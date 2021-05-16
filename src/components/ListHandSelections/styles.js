@@ -5,7 +5,6 @@ export const HandsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid white; */
   height: 50vh;
 `;
 
@@ -15,8 +14,6 @@ export const Background = styled.img`
   width: auto;
   top: 50%;
   transform: translateY(-50%);
-
-  /* display: none; */
 `;
 
 export const Box = styled.div`
@@ -28,7 +25,6 @@ export const Result = styled.div`
   position: relative;
   width: 100%;
   height: 50vh;
-  /* border: 1px solid white; */
   gap: 2.5em;
   display: flex;
   flex-direction: column;
@@ -53,7 +49,6 @@ export const ResultMessage = styled.p`
 
 export const MessageSelection = styled.p`
   text-transform: uppercase;
-  /* font-size: 2em; */
 `;
 
 export const PlayAgainButton = styled.button`
