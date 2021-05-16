@@ -16,34 +16,61 @@ import { useGlobalData } from '../../utils/useGlobalData';
 import { defineWinner } from '../../utils/gameUtils';
 
 const ListHandSelections = () => {
-  const { userHand, setUserHand, setScore } = useGlobalData();
+  const { gameplay, setGameplay } = useGlobalData();
 
-  const machine = items[Math.floor(Math.random() * items.length)];
-  const user = items.filter((item) => item.name === userHand)[0];
+  const handleClick = (el) => {
+    let actualScore = 0;
+    const machine = items[Math.floor(Math.random() * items.length)];
+    const whoWins = defineWinner(el.name, machine.name);
+    switch (whoWins) {
+      case 0:
+        actualScore = 1;
+        break;
+      case 1:
+        actualScore = -1;
+        break;
+      default:
+        actualScore = 0;
+        break;
+    }
+    setGameplay({
+      ...gameplay,
+      score: gameplay.score + actualScore,
+      userHand: el,
+      machineHand: machine,
+      winner: whoWins,
+    });
+  };
 
-  if (user) {
-    const whoWins = defineWinner(user.name, machine.name);
-
+  if (Object.keys(gameplay.userHand).length !== 0) {
     return (
       <Result>
         <Hands>
           <Box>
-            <HandSelection {...user} isActive={whoWins === 0} />
+            <HandSelection
+              {...gameplay.userHand}
+              isActive={gameplay.winner === 0}
+            />
             <MessageSelection>you picked</MessageSelection>
           </Box>
           <Box>
-            <HandSelection {...machine} isActive={whoWins === 1} />
+            <HandSelection
+              {...gameplay.machineHand}
+              isActive={gameplay.winner === 1}
+            />
             <MessageSelection>the house picked</MessageSelection>
           </Box>
         </Hands>
         <ResultMessage>
-          {whoWins === -1
+          {gameplay.winner === -1
             ? 'No one wins'
-            : whoWins == 0
+            : gameplay.winner == 0
             ? 'User Wins'
             : 'House Wins'}
         </ResultMessage>
-        <PlayAgainButton onClick={() => setUserHand('')}>
+        <PlayAgainButton
+          onClick={() => setGameplay({ ...gameplay, userHand: {} })}
+        >
           play again
         </PlayAgainButton>
       </Result>
@@ -53,10 +80,7 @@ const ListHandSelections = () => {
     <HandsContainer>
       {items.map((item) =>
         React.cloneElement(
-          <HandSelection
-            {...item}
-            handleClick={() => setUserHand(item.name)}
-          />,
+          <HandSelection {...item} handleClick={() => handleClick(item)} />,
           { key: item.id }
         )
       )}

@@ -5,7 +5,7 @@ export const HandsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   height: 50vh;
 `;
 
@@ -27,8 +27,8 @@ export const Box = styled.div`
 export const Result = styled.div`
   position: relative;
   width: 100%;
-  height: auto;
-  border: 1px solid white;
+  height: 50vh;
+  /* border: 1px solid white; */
   gap: 2.5em;
   display: flex;
   flex-direction: column;

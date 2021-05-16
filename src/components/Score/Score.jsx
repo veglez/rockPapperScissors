@@ -3,11 +3,11 @@ import { useGlobalData } from '../../utils/useGlobalData';
 import { ScoreBoard } from './Styles';
 
 const Score = () => {
-  const { score } = useGlobalData();
+  const { gameplay } = useGlobalData();
   return (
     <ScoreBoard>
       <p>score</p>
-      <p>{score}</p>
+      <p>{gameplay.score}</p>
     </ScoreBoard>
   );
 };
