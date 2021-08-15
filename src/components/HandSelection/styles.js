@@ -1,30 +1,27 @@
 import styled from 'styled-components';
 
+const getPosition = (id, isExtended) => {
+  let denominador = 3;
+  let hip = -125;
+  let offset = -45;
+  let iOf = Math.PI / 3;
+  if (isExtended) {
+    denominador = 5;
+    offset = 0;
+    iOf = 0;
+  }
+
+  let x = -hip * Math.sin(iOf + (2 * Math.PI * id) / denominador);
+  let y = hip * Math.cos(iOf + (2 * Math.PI * id) / denominador) + offset;
+  let transformation = `translate(${x}px, ${y}px)`;
+  return transformation;
+};
+
 export const Selection = styled.div`
   position: absolute;
-  transform: ${({ id, isExtended }) => {
-    //TODO FALTA ORDENARLOS EN EL ORDEN CORRECTO
-    let denominador = 3;
-    let hip = -140;
-    let offset = -45;
-    if (isExtended) {
-      denominador = 5;
-      hip = 140;
-      offset = 0;
-    }
-    let value = `translate(${
-      id % 2 == 0
-        ? -1 * hip * Math.sin((Math.PI * id) / denominador)
-        : hip * Math.sin((Math.PI * id) / denominador)
-    }px, ${
-      id % 2 == 0
-        ? -1 * hip * Math.cos((Math.PI * id) / denominador) + offset
-        : hip * Math.cos((Math.PI * id) / denominador) + offset
-    }px)`;
-    return value;
-  }};
-  width: 100px;
-  height: 100px;
+  transform: ${({ id, isExtended }) => getPosition(id, isExtended)};
+  width: 90px;
+  height: 90px;
   margin: 50px;
   border-radius: 50%;
   background-image: linear-gradient(

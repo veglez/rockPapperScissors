@@ -5,15 +5,14 @@ export const HandsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  min-height: 50vh;
+  margin-block: 1.5rem;
 `;
 
 export const Background = styled.img`
-  position: absolute;
+  position: relative;
   z-index: -1;
-  width: auto;
-  top: 50%;
-  transform: translateY(-50%);
+  display: block;
 `;
 
 export const Box = styled.div`
@@ -24,7 +23,7 @@ export const Box = styled.div`
 export const Result = styled.div`
   position: relative;
   width: 100%;
-  height: 50vh;
+  height: max-content;
   gap: 2.5em;
   display: flex;
   flex-direction: column;

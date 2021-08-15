@@ -12,6 +12,7 @@ const App = () => {
         alignItems: 'center',
         justifyContent: 'space-evenly',
         minHeight: '100vh',
+        gap: 12,
       }}
     >
       <Header />

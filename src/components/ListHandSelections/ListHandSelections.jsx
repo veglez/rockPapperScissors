@@ -25,7 +25,6 @@ const ListHandSelections = () => {
         [options.paper, options.rock, options.scissors].includes(item.name)
       );
 
-  console.log('items are itemsVersion: ', itemsVersion);
   const handleClick = (el) => {
     let actualScore = 0;
     const machine =
@@ -95,7 +94,7 @@ const ListHandSelections = () => {
       )}
       <Background
         src={extendedVersion ? pentagram : triangle}
-        alt='pentagrama'
+        alt='background image for hands available'
       />
     </HandsContainer>
   );
